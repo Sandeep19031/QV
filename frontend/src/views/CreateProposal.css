@@ -1,0 +1,61 @@
+.description, .noOfOptions{
+    display: flex;
+    justify-content: space-around;
+}
+.description-title, .noOfOptions-title {
+    width: 30%;
+}
+.description-inputBox {
+    width: 70%;
+}
+
+.description-input{
+    height: 80%;
+    width: 80%;
+}
+
+.expirationTime, .options {
+    display: flex;
+    justify-content: space-around;
+}
+
+.expirationTime-title, .option-title {
+    width: 30%;
+}
+
+.expirationTime-inputBox, .noOfOptions-inputBox, .option-inputBox {
+    width: 70%;
+    display: flex;
+    align-items: center;
+}
+.expirationTime-input, .option-input, .noOfOptions-input {
+    width: 80%;
+    height: 40%;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    
+}
+.createButton {
+    display:inline-block;
+    color:#444;
+    border:1px solid #CCC;
+    background:#DDD;
+    box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
+    cursor:pointer;
+    vertical-align:middle;
+    max-width: 100px;
+    max-height: fit-content;
+    padding: 5px;
+    text-align: center;
+    
+}
+.createButton:active {
+    color:red;
+    box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
+}
+.createButton > p {
+    line-height: 0px;
+}

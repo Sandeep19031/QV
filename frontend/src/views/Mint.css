@@ -1,0 +1,35 @@
+.accountInput, .creditInput, .buttonContainer {
+    display: flex;
+}
+.accountInput > p, .creditInput > p {
+    width: 30%;
+}
+.accountInputContainer, .creditInputContainer {
+    display: flex;
+    align-items: center;
+}
+.buttonContainer {
+    justify-content: flex-end;
+}
+
+.mintButton {
+    display:inline-block;
+    color:#444;
+    border:1px solid #CCC;
+    background:#DDD;
+    box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
+    cursor:pointer;
+    vertical-align:middle;
+    max-width: 100px;
+    max-height: fit-content;
+    padding: 5px;
+    text-align: center;
+    
+}
+.mintButton:active {
+    color:red;
+    box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
+}
+.mintButton > p {
+    line-height: 0px;
+}
