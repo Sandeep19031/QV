@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@truffle/hdwallet-provider": "^2.0.14"
+  },
+  "devDependencies": {
+    "@nomiclabs/hardhat-waffle": "^2.0.3",
+    "ethers": "^5.7.0",
+    "hardhat": "^2.10.2",
+    "hardhat-deploy": "^0.11.12",
+    "ts-node": "^10.9.1"
+  }
+}

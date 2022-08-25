@@ -11,49 +11,20 @@ import {
   Button,
   Spinner,
 } from "reactstrap";
-import Countdown, { zeroPad } from "react-countdown";
 import "./Styles.scss";
 import { useEffect, useState } from "react";
 import { useEth } from "contexts/EthContext";
 import toast from "cogo-toast";
 import { Link } from "react-router-dom";
+import ProposalCard from "./ProposalCard";
 
-const ProposalCard = () => {
-  return (
-    <Col lg="6" xl="3">
-      <Card className="card-stats mb-4 mb-xl-0">
-        <CardBody>
-          <Row>
-            <div className="col">
-              <CardTitle tag="h5" className="text-uppercase text-muted mb-0">
-                Proposal No
-              </CardTitle>
-              <span className="h2 font-weight-bold mb-0">1</span>
-            </div>
-          </Row>
-          <p className="mt-3 mb-0 text-muted text-sm">
-            <Countdown
-              date={Date.now() + 100000000}
-              renderer={({ days, hours, minutes, seconds }) => (
-                <span className="text-nowrap">
-                  TIME LEFT: {days} Days {zeroPad(hours)}:{zeroPad(minutes)}:
-                  {zeroPad(seconds)}
-                </span>
-              )}
-            />
-          </p>
-        </CardBody>
-      </Card>
-    </Col>
-  );
-};
 const ProposalList = () => {
   const [proposalCount, setProposalCount] = useState(Number(0));
   const [proposalList, setProposalList] = useState(
     Array.from(new Array(proposalCount))
   );
   const [refresh, setRefresh] = useState(false);
-
+  const [balance, setBalance] = useState(Number(0));
   const {
     state: { contract, accounts },
   } = useEth();
@@ -61,29 +32,41 @@ const ProposalList = () => {
   useEffect(() => {
     const ProposalCount = async () => {
       try {
-        const pC = await contract?.methods
-          .getProposalCount()
-          .call({ from: accounts[0] });
+        const pC = await contract?.methods.getProposalCount().call();
+        let balance = await contract?.methods.balanceOf(accounts[0]).call();
+        setBalance(balance);
         setProposalCount(pC);
         console.log("res from pC", pC);
       } catch (err) {
         toast.error("Error while fetching proposals!!");
+        console.log("proposal fetching error", err);
       }
     };
 
     const fetProposalInfo = async (pID) => {
       let res;
+
+      console.log(
+        "varible",
+        contract.methods.proposals(1).call((err, res) => {
+          console.log(res);
+        })
+      );
       try {
-        res = await contract?.methods
-          .getDetails(pID)
-          .call({ from: accounts[0] });
+        res = await contract?.methods.proposals(pID).call();
+        console.log("res", res);
+        let oL = await contract?.methods.optionById(pID).call();
+
+        console.log("options", oL);
         let pInfoObject = {
-          description: res[0],
-          optionsList: res[1],
-          noOfOptions: res[1].length,
-          expirationTime: res[2],
-          status: res[3],
+          description: res[2],
+          optionsList: oL,
+          noOfOptions: oL.length,
+          expirationTime: res[4],
+          status: res[1],
+          credits: res[6],
         };
+        console.log("prepared object", pInfoObject);
         return pInfoObject;
       } catch (err) {
         toast.error("Error in fetching proposal info!!");
@@ -110,69 +93,24 @@ const ProposalList = () => {
     };
     getData();
   });
+
   return (
     <>
       <div className="header bg-gradient-info pb-8 pt-5 pt-md-8">
         <Container fluid>
           <div className="header-body">
             {/* Card stats */}
+            <h4 style={{ color: "white" }}>Balance: {balance}</h4>
             <Row>
-              {proposalCount == 0 && <p>No proposals..</p>}
+              {(proposalCount == 0 || proposalCount === undefined) && (
+                <h4>No proposals..</h4>
+              )}
+
               {proposalCount > 0 &&
                 proposalList?.map((proposal, index) => {
-                  if (index === 0 || index < 5) return;
-                  return (
-                    <Col lg="6" xl="3">
-                      <Link
-                        to={{
-                          pathname: `/castVote/${index}`,
-                          state: {
-                            proposalID: index,
-                            description: proposal.description,
-                            optionsList: proposal.optionsList,
-                            noOfOptions: proposal.noOfOptions,
-                            expirationTime: proposal.expirationTime,
-                            proposalStatus: proposal.status,
-                          },
-                        }}
-                        style={{ textDecoration: "none" }}
-                      >
-                        <Card className="card-stats mb-4 mb-xl-0">
-                          <CardBody>
-                            <Row>
-                              <div className="col">
-                                <CardTitle
-                                  tag="h5"
-                                  className="text-uppercase text-muted mb-0"
-                                >
-                                  Proposal No
-                                </CardTitle>
-                                <span className="h2 font-weight-bold mb-0">
-                                  {index}
-                                </span>
-                              </div>
-                            </Row>
-                            <p className="mt-3 mb-0 text-muted text-sm">
-                              <Countdown
-                                date={proposal.expirationTime * 1000}
-                                renderer={({
-                                  days,
-                                  hours,
-                                  minutes,
-                                  seconds,
-                                }) => (
-                                  <span className="text-nowrap">
-                                    TIME LEFT: {days} Days {zeroPad(hours)}:
-                                    {zeroPad(minutes)}:{zeroPad(seconds)}
-                                  </span>
-                                )}
-                              />
-                            </p>
-                          </CardBody>
-                        </Card>
-                      </Link>
-                    </Col>
-                  );
+                  if (index === 0) return;
+                  let isComplete = Date.now() > proposal.expirationTime;
+                  return <ProposalCard proposal={proposal} index={index} />;
                 })}
             </Row>
           </div>

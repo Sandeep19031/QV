@@ -14,9 +14,10 @@ function EthProvider({ children }) {
         const networkID = await web3.eth.net.getId();
         const { abi } = artifact;
         let address, contract;
-        
+        //address = "0x02D864267626491801Cd999D9657E54e24952f8B";
         try {
-          address = artifact.networks[networkID].address;
+          address = artifact.address;
+          // contract = new web3.eth.Contract(abi, address);
           contract = new web3.eth.Contract(abi, address);
 
           
@@ -34,7 +35,7 @@ function EthProvider({ children }) {
   useEffect(() => {
     const tryInit = async () => {
       try {
-        const artifact = require("../../contracts/Voting.json");
+        const artifact = require("../../abi/Qvoting.json");
         init(artifact);
       } catch (err) {
         console.error(err);

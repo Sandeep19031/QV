@@ -22,13 +22,29 @@ import Register from "views/examples/Register.js";
 import Login from "views/examples/Login.js";
 import Tables from "views/examples/Tables.js";
 import Icons from "views/examples/Icons.js";
+import AdminPage from "AdminPage";
+import VoterPage from "VoterPage";
 
 var routes = [
   {
-    path: "/index",
+    path: "/QuadraticVoting",
     name: "Quadratic Voting",
     icon: "ni ni-tv-2 text-primary",
     component: Index,
+    layout: "/admin",
+  },
+  {
+    path: "/adminPage",
+    name: "Quadratic Voting",
+    icon: "ni ni-tv-2 text-primary",
+    component: AdminPage,
+    layout: "/admin",
+  },
+  {
+    path: "/voterPage",
+    name: "Quadratic Voting",
+    icon: "ni ni-tv-2 text-primary",
+    component: VoterPage,
     layout: "/admin",
   },
   // {

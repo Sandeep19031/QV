@@ -28,6 +28,7 @@ import AuthLayout from "layouts/Auth.js";
 import { EthProvider } from "contexts/EthContext";
 import Voting from "views/Voting";
 import AdminOrVoter from "AdminOrVoter";
+import Index from "views/Index";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -37,7 +38,11 @@ ReactDOM.render(
         <Route path="/auth" render={(props) => <AuthLayout {...props} />} />
 
         <Route path="/castVote/:id" render={() => <Voting />} />
-        <Redirect from="/" to="/admin/index" />
+        <Route
+          path="/QuadraticVoting"
+          render={(props) => <AdminOrVoter {...props} />}
+        />
+        <Redirect from="*" to="/QuadraticVoting" />
       </Switch>
     </EthProvider>
   </BrowserRouter>,

@@ -1,0 +1,443 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "C:\\Users\\sande\\Desktop\\Internship\\QV\\blockchain\\contracts\\Qvoting.sol": {
+      "lastModificationDate": 1660937400200,
+      "contentHash": "22af57509e0aecdddb2ce9ab503d703f",
+      "sourceName": "contracts/Qvoting.sol",
+      "solcConfig": {
+        "version": "0.8.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../EventsQv/ProposalEvents.sol",
+        "../Library/VoterLibrary.sol",
+        "../Library/ProposalLibrary.sol",
+        "../Library/UserProposalLibrary.sol",
+        "../QvToken/QvToken.sol",
+        "../QvToken/ERC20.sol",
+        "../QvToken/Context.sol",
+        "../QvToken/IERC20.sol",
+        "../QvToken/IERC20Metadata.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Qvoting"
+      ]
+    },
+    "C:\\Users\\sande\\Desktop\\Internship\\QV\\blockchain\\EventsQv\\ProposalEvents.sol": {
+      "lastModificationDate": 1659702007335,
+      "contentHash": "798cc0d45961e51fa6939b005bf25c7b",
+      "sourceName": "EventsQv/ProposalEvents.sol",
+      "solcConfig": {
+        "version": "0.8.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "proposalEvents"
+      ]
+    },
+    "C:\\Users\\sande\\Desktop\\Internship\\QV\\blockchain\\Library\\VoterLibrary.sol": {
+      "lastModificationDate": 1660931100911,
+      "contentHash": "b9c6e2d466297e254f2ad51b9515c856",
+      "sourceName": "Library/VoterLibrary.sol",
+      "solcConfig": {
+        "version": "0.8.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "voterLibrary"
+      ]
+    },
+    "C:\\Users\\sande\\Desktop\\Internship\\QV\\blockchain\\Library\\ProposalLibrary.sol": {
+      "lastModificationDate": 1660766543349,
+      "contentHash": "d3b4b7f9d566ad24ea68ee4dfb484478",
+      "sourceName": "Library/ProposalLibrary.sol",
+      "solcConfig": {
+        "version": "0.8.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "proposalLibrary"
+      ]
+    },
+    "C:\\Users\\sande\\Desktop\\Internship\\QV\\blockchain\\Library\\UserProposalLibrary.sol": {
+      "lastModificationDate": 1659702007080,
+      "contentHash": "6f9f9b9ba43e80c8a75c4dc159d3f9d5",
+      "sourceName": "Library/UserProposalLibrary.sol",
+      "solcConfig": {
+        "version": "0.8.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "UserProposalLibrary"
+      ]
+    },
+    "C:\\Users\\sande\\Desktop\\Internship\\QV\\blockchain\\QvToken\\QvToken.sol": {
+      "lastModificationDate": 1659942323351,
+      "contentHash": "8be66d803b399019b8996379013e847f",
+      "sourceName": "QvToken/QvToken.sol",
+      "solcConfig": {
+        "version": "0.8.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "./ERC20.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "QVtoken"
+      ]
+    },
+    "C:\\Users\\sande\\Desktop\\Internship\\QV\\blockchain\\QvToken\\ERC20.sol": {
+      "lastModificationDate": 1659702012009,
+      "contentHash": "b0d15eb736afa50229d4c79fd23e4bcf",
+      "sourceName": "QvToken/ERC20.sol",
+      "solcConfig": {
+        "version": "0.8.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "./IERC20.sol",
+        "./IERC20Metadata.sol",
+        "./Context.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ERC20"
+      ]
+    },
+    "C:\\Users\\sande\\Desktop\\Internship\\QV\\blockchain\\QvToken\\Context.sol": {
+      "lastModificationDate": 1659702012005,
+      "contentHash": "e7f98c33ad1d39d8a6661bf0804fae36",
+      "sourceName": "QvToken/Context.sol",
+      "solcConfig": {
+        "version": "0.8.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Context"
+      ]
+    },
+    "C:\\Users\\sande\\Desktop\\Internship\\QV\\blockchain\\QvToken\\IERC20.sol": {
+      "lastModificationDate": 1660765400719,
+      "contentHash": "da8d4fae704b3ca870dbca0fdaccbb2d",
+      "sourceName": "QvToken/IERC20.sol",
+      "solcConfig": {
+        "version": "0.8.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC20"
+      ]
+    },
+    "C:\\Users\\sande\\Desktop\\Internship\\QV\\blockchain\\QvToken\\IERC20Metadata.sol": {
+      "lastModificationDate": 1659702011999,
+      "contentHash": "c19cb7c116eb47cd9f500c03a4933a3c",
+      "sourceName": "QvToken/IERC20Metadata.sol",
+      "solcConfig": {
+        "version": "0.8.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "./IERC20.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC20Metadata"
+      ]
+    }
+  }
+}

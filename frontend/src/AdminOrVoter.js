@@ -42,6 +42,7 @@ export default function AdminOrVoter() {
         }
       } catch (err) {
         toast.error("Error in Login!");
+        console.log("error in login", err);
       }
     };
 
@@ -56,7 +57,7 @@ export default function AdminOrVoter() {
         if (admin) {
           toast.success("Successfully Logged in as Admin!!");
         } else {
-          toast.success("Hello Voter..");
+          toast.error("error");
         }
         setIsAdmin(admin);
       }
@@ -76,4 +77,5 @@ export default function AdminOrVoter() {
       return <NoticeWrongNetwork />;
     }
   }
+  return <div>Loading...</div>;
 }

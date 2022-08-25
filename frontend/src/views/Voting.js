@@ -18,7 +18,6 @@ import { useEth } from "contexts/EthContext";
 import { useEffect, useState } from "react";
 import toast from "cogo-toast";
 import Winner from "./Winner";
-import AdminNavbar from "components/Navbars/AdminNavbar";
 
 const Voting = () => {
   const location = useLocation();
@@ -29,7 +28,7 @@ const Voting = () => {
   const optionsList = location.state.optionsList;
   const expTime = location.state.expirationTime;
   const proposalStatus = location.state.proposalStatus;
-
+  const voteRights = location.state.credits;
   const {
     state: { contract, accounts },
   } = useEth();
@@ -43,6 +42,7 @@ const Voting = () => {
     Array.from(new Array(noOfOptions))
   );
   const [update, setUpdate] = useState(false);
+  const [votingTransacation, setVotingTransacation] = useState();
   let arr = [];
   for (let i = 1; i <= noOfOptions; i++) {
     arr.push(i);
@@ -50,10 +50,14 @@ const Voting = () => {
   useEffect(() => {
     const getRemainingCredits = async () => {
       try {
-        const credits = await contract.methods.balanceOf(accounts[0]).call();
-        console.log("res from balanceOf", credits);
-        setRemainingCredits(Number(credits));
-        setTotalCredits(Number(credits));
+        // const credits = await contract.methods.balanceOf(accounts[0]).call();
+        // console.log("res from balanceOf", credits, voteRights);
+
+        const v = await contract.methods
+          .allVoters(accounts[0], proposalID)
+          .call();
+        setRemainingCredits(Number(v.voteNum));
+        setTotalCredits(Number(v.voteNum));
       } catch (err) {
         console.log("error in fetching proposal!");
       }
@@ -61,11 +65,14 @@ const Voting = () => {
 
     const checkVoted = async () => {
       try {
-        const v = await contract?.methods
-          .userHasVoted(proposalID, accounts[0])
+        // const v = await contract?.methods
+        //   .userHasVoted(proposalID, accounts[0])
+        //   .call();
+        const v = await contract.methods
+          .allVoters(accounts[0], proposalID)
           .call();
-        console.log("user voted", v);
-        setVoted(v);
+        console.log("user voted", v.hasVoted);
+        setVoted(v.hasVoted);
       } catch (err) {
         console.log("user voted err", err);
       }
@@ -90,13 +97,18 @@ const Voting = () => {
     }
     try {
       const res = await contract.methods
-        .castVote(proposalID, votesList)
+        .responseProposal(proposalID, accounts[0], optionsList, votesList)
         .send({ from: accounts[0] });
+
+      const res2 = contract.methods.allVoters(accounts[0], proposalID).call();
+      setRemainingCredits(res2.voteNum);
+      setSubQuantity(res2.voteNum);
 
       console.log("res from castVote", res);
       if (res) {
         toast.success("Your votes are successfully casted ...");
         setVoted(true);
+        setVotingTransacation(res.blockHash);
       }
     } catch (err) {
       //toast.err("Error in Vote Casting !!");
@@ -212,16 +224,6 @@ const Voting = () => {
     <>
       <div className="header bg-gradient-info pb-8 pt-5 pt-md-8">
         {" "}
-        <img
-          alt="..."
-          src={require("../assets/img/brand/BrainChainNew.png").default}
-          style={{
-            position: "absolute",
-            top: "10px",
-            left: "10px",
-            width: "5%",
-          }}
-        />
         <Container fluid>
           <div className="header-body">
             {/* Card stats */}
@@ -243,7 +245,7 @@ const Voting = () => {
                         </p>
                         <p className="mt-3 mb-0 text-muted text-sm">
                           <Countdown
-                            date={expTime * 1000}
+                            date={Number(expTime)}
                             renderer={renderer}
                           />
                         </p>
@@ -280,6 +282,19 @@ const Voting = () => {
                       <></>
                     )}
 
+                    {voted ? (
+                      <p>
+                        Voting transaction{" "}
+                        <a
+                          href={`https://mumbai.polygonscan.com/block/${votingTransacation}`}
+                          target="_blank"
+                        >
+                          {votingTransacation}
+                        </a>
+                      </p>
+                    ) : (
+                      <></>
+                    )}
                     {isComplete && (
                       <Winner
                         proposaID={proposalID}

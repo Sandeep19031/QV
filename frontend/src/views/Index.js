@@ -49,6 +49,7 @@ import {
 import Header from "components/Headers/Header.js";
 import ProposalList from "./ProposalList";
 import Voting from "./Voting";
+import AdminOrVoter from "../AdminOrVoter.js";
 
 const Index = (props) => {
   const [activeNav, setActiveNav] = useState(1);
@@ -63,12 +64,7 @@ const Index = (props) => {
     setActiveNav(index);
     setChartExample1Data("data" + index);
   };
-  return (
-    <>
-      <ProposalList />
-      {/* Page content */}
-    </>
-  );
+  return <ProposalList />;
 };
 
 export default Index;
